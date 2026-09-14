@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#b4070e"/>
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="#d70a13" stroke="#ffbe0b" stroke-width="8"/>
+  <image x="120" y="105" width="960" height="420" preserveAspectRatio="xMidYMid meet" xlink:href="logo.png"/>
+</svg>
