@@ -411,6 +411,65 @@
             text-decoration: underline;
         }
 
+        .gallery-card {
+            max-width: 680px;
+            min-height: auto;
+        }
+
+        .gallery-shell {
+            position: relative;
+            overflow: hidden;
+            margin-top: 18px;
+            border-radius: 24px;
+            border: 3px solid #ffe885;
+            background: #fffaf0;
+            box-shadow: 0 8px 18px rgba(106, 124, 146, 0.12);
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 360px;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #f2d7aa;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .carousel-dot.active {
+            background: #ff8b8b;
+            transform: scale(1.2);
+        }
+
         .countdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -816,6 +875,33 @@
             </a>
         </div>
 
+        <div class="card reveal gallery-card">
+            <h2>Álbum del Circuito</h2>
+            <p>Un vistazo a los mejores momentos de Enrique.</p>
+
+            <div class="gallery-shell" aria-label="Carrusel de fotos de Enrique">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80" alt="Enrique sonriendo"></div>
+                    <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" alt="Enrique jugando"></div>
+                    <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80" alt="Enrique con su familia"></div>
+                    <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=900&q=80" alt="Enrique con regalos"></div>
+                    <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80" alt="Enrique en celebración"></div>
+                    <div class="gallery-slide"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Enrique feliz"></div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <div class="carousel-dots" aria-label="Indicadores del carrusel">
+                    <span class="carousel-dot active"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                </div>
+            </div>
+        </div>
+
         <!-- MESA DE REGALOS -->
         <div class="card reveal">
             <img src="10.png" alt="Decoración de carrera" class="section-edge top-left">
@@ -877,6 +963,26 @@
 
         window.addEventListener("scroll", reveal);
         reveal(); // Ejecutar al cargar la página
+
+        var galleryTrack = document.getElementById("galleryTrack");
+        var gallerySlides = Array.from(document.querySelectorAll(".gallery-slide"));
+        var galleryDots = Array.from(document.querySelectorAll(".carousel-dot"));
+        var galleryIndex = 0;
+
+        function showSlide(index) {
+            if (!galleryTrack || gallerySlides.length === 0) return;
+
+            galleryIndex = (index + gallerySlides.length) % gallerySlides.length;
+            galleryTrack.style.transform = "translateX(-" + (galleryIndex * 100) + "% )";
+
+            galleryDots.forEach(function (dot, dotIndex) {
+                dot.classList.toggle("active", dotIndex === galleryIndex);
+            });
+        }
+
+        setInterval(function () {
+            showSlide(galleryIndex + 1);
+        }, 4000);
 
         var eventDate = new Date("2026-11-07T15:00:00").getTime();
         var countdownTimer = setInterval(function () {
