@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación 3 Años - Rayo McQueen</title>
+    <!-- Fuentes: Fredoka (tierna) y Racing Sans One (títulos) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(180deg, #e4f1f8 0%, #ffffff 100%);
+            background-attachment: fixed;
+            font-family: 'Fredoka', sans-serif;
+            color: #6a7c92;
+            overflow-x: hidden;
+        }
+
+        /* Nubes decorativas de fondo */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            animation: cloud-drift 50s ease-in-out infinite alternate;
+            will-change: background-position;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(255,255,255,0.9) 25px, transparent 26px),
+                radial-gradient(circle at 19% 27%, rgba(255,255,255,0.9) 35px, transparent 36px),
+                radial-gradient(circle at 12% 27%, rgba(255,255,255,0.9) 30px, transparent 31px),
+                radial-gradient(circle at 85% 15%, rgba(255,255,255,0.8) 25px, transparent 26px),
+                radial-gradient(circle at 88% 18%, rgba(255,255,255,0.8) 35px, transparent 36px),
+                radial-gradient(circle at 82% 18%, rgba(255,255,255,0.8) 30px, transparent 31px);
+        }
+
+            @keyframes cloud-drift {
+                from { background-position: 0 0; }
+                to { background-position: 180px 0; }
+            }
+
+        /* === HERO SECTION === */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(22, 22, 22, 0.28) 0 14%, transparent 14% 78%, rgba(255, 190, 11, 0.28) 78%),
+                linear-gradient(155deg, #760006 0%, #d70a13 52%, #f04418 76%, #ffbe0b 100%);
+            box-shadow: inset 0 -12px 0 rgba(108, 0, 6, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-top: 10px;
+            color: #ffffff;
+            text-shadow: 3px 3px 0 #8f0007, 5px 5px 0 rgba(20, 20, 20, 0.35);
+            z-index: 2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4em;
+            font-weight: 500;
+            color: #ffe36e;
+            text-shadow: 1px 2px 0 #8f0007;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+
+        .hero-car {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            opacity: 0.95; 
+            filter: drop-shadow(0px 15px 15px rgba(106, 124, 146, 0.2));
+            animation: float 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 1.8em;
+            margin-top: 20px;
+            color: #ffe36e;
+            text-shadow: 2px 2px 0 #8f0007;
+            z-index: 2;
+        }
+
+        /* Indicador de Scroll Animado */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ff8b8b;
+            font-weight: 600;
+            font-size: 1em;
+            animation: bounce 4s infinite;
+            opacity: 0.8;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: #ff8b8b;
+            margin-top: 5px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -5px); }
+            60% { transform: translate(-50%, -2px); }
+        }
+
+        /* === CONTENEDOR DE TARJETAS (Debajo del Hero) === */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 80px 20px;
+            gap: 60px; 
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            isolation: isolate;
+            background: #181818;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            opacity: 0.92;
+            background: repeating-conic-gradient(#181818 0 25%, #ffffff 0 50%) 0 0 / 72px 72px;
+            animation: flag-drift 18s linear infinite;
+        }
+
+        .container::after {
+            content: "";
+            position: absolute;
+            top: 18%;
+            left: -12%;
+            width: 124%;
+            height: 34%;
+            z-index: -1;
+            background: #ed1017;
+            border-top: 10px solid #bd090f;
+            border-bottom: 10px solid #bd090f;
+            border-radius: 48% 52% 43% 57% / 26% 35% 30% 42%;
+            transform: rotate(3deg);
+            box-shadow: 0 12px 0 rgba(189, 9, 15, 0.45), inset 0 -18px 0 rgba(180, 0, 8, 0.14);
+            animation: ribbon-wave 8s ease-in-out infinite alternate;
+        }
+
+        .container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes flag-drift {
+            from { background-position: 0 0; }
+            to { background-position: 72px 36px; }
+        }
+
+        @keyframes ribbon-wave {
+            from { transform: translateX(-2%) rotate(3deg) scaleY(0.98); }
+            to { transform: translateX(2%) rotate(-2deg) scaleY(1.04); }
+        }
+
+        /* Estilos generales compartidos */
+        h1, h2 {
+            font-family: 'Racing Sans One', cursive;
+            color: #ff8b8b; 
+            letter-spacing: 0.5px;
+            font-weight: normal;
+            text-shadow: 1px 1px 0px #ffe885;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        .badge-3 {
+            background-color: #ffe885; 
+            color: #ff8b8b;
+            display: inline-block;
+            width: 85px;
+            height: 85px;
+            line-height: 80px;
+            border-radius: 50%;
+            font-size: 3em;
+            font-family: 'Racing Sans One', cursive;
+            border: 5px solid #ffffff;
+            transform: rotate(-5deg);
+            box-shadow: 0 8px 16px rgba(255, 139, 139, 0.2);
+            z-index: 3;
+            margin-bottom: -15px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Tarjetas */
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 35px;
+            min-height: 340px;
+            padding: 48px 25px 42px 25px;
+            text-align: center;
+            box-shadow: 0 12px 25px rgba(106, 124, 146, 0.08); 
+            border: 3px solid #ffc1c1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 20px 35px rgba(106, 124, 146, 0.16);
+        }
+
+        .info-box {
+            background: #f4f9fc;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px dashed #b9d8eb;
+            margin-top: 15px;
+        }
+
+        .map-embed {
+            width: 100%;
+            height: 220px;
+            margin-top: 18px;
+            border: 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 18px rgba(106, 124, 146, 0.12);
+        }
+
+        .map-link {
+            display: inline-block;
+            background-color: #ff9b9b;
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 22px;
+            font-weight: 600;
+            margin-top: 10px;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(255, 155, 155, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .map-link:hover {
+            background-color: #ff8b8b;
+            transform: translateY(-2px);
+            text-decoration: underline;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .countdown-unit {
+            background: #fff4c7;
+            border: 2px solid #ffe885;
+            border-radius: 18px;
+            padding: 12px 4px;
+        }
+
+        .countdown-number {
+            display: block;
+            color: #ff8b8b;
+            font-family: 'Racing Sans One', cursive;
+            font-size: 1.8em;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            display: block;
+            color: #7b8a9e;
+            font-size: 0.75em;
+            margin-top: 6px;
+        }
+
+        .itinerary {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .itinerary-item {
+            background: #fdf5e6; 
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            border-radius: 20px;
+            border-left: 6px solid #ffe885;
+            color: #7b8a9e;
+            font-size: 1.05em;
+        }
+        
+        .itinerary-item strong {
+            color: #ff8b8b;
+            font-weight: 600;
+        }
+
+        .btn-rsvp {
+            display: inline-block;
+            background-color: #ff9b9b;
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 1.15em;
+            font-weight: 500;
+            margin-top: 20px;
+            box-shadow: 0 6px 15px rgba(255, 155, 155, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-rsvp:hover {
+            background-color: #ff8b8b;
+            transform: translateY(-2px);
+        }
+
+        .btn-rsvp:active {
+            transform: translateY(1px);
+        }
+
+        /* === CLASES PARA EL SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            animation: section-pulse 5s ease-in-out infinite;
+        }
+
+        .card:nth-child(2) {
+            transition-delay: 0.12s;
+        }
+
+        .card:nth-child(3) {
+            transition-delay: 0.24s;
+        }
+
+        .card:nth-child(4) {
+            transition-delay: 0.36s;
+        }
+
+        @keyframes section-pulse {
+            0%, 100% { box-shadow: 0 12px 25px rgba(106, 124, 146, 0.08); }
+            50% { box-shadow: 0 18px 32px rgba(255, 139, 139, 0.16); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card,
+            .reveal.active {
+                animation: none;
+                transition-delay: 0s;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clouds"></div>
+
+    <!-- === HERO SECTION === -->
+    <header class="hero">
+        <div class="badge-3">3</div>
+        <h1>¡Enrique!</h1>
+        <p class="subtitle">¡Arranquen sus motores!</p>
+        
+        <img src="https://www.pngmart.com/files/4/Lightning-McQueen-PNG-Transparent-Image.png" alt="Rayo McQueen" class="hero-car">
+        
+        <h2>¡KA-CHOW!</h2>
+
+        <!-- Indicador visual para hacer scroll -->
+        <div class="scroll-indicator">
+            Desliza
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- === CONTENIDO CON SCROLL REVEAL === -->
+    <main class="container">
+        
+        <!-- SECCIÓN 1: Mensaje -->
+        <div class="card reveal">
+            <h2>Nuestra Gran Carrera</h2>
+            <p>Nuestro pequeño campeón está por dar su tercera vuelta al sol y queremos celebrarlo contigo.</p>
+            <p style="margin-top: 15px; font-weight: 500; color: #ffb142;">¡Te esperamos en la línea de meta!</p>
+        </div>
+
+        <!-- CUENTA REGRESIVA -->
+        <div class="card reveal">
+            <h2>Cuenta Regresiva</h2>
+            <p>¡Cada vez falta menos para celebrar a Enrique!</p>
+            <div class="countdown" aria-label="Cuenta regresiva para la fiesta">
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="countdown-days">0</span>
+                    <span class="countdown-label">días</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="countdown-hours">0</span>
+                    <span class="countdown-label">horas</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="countdown-minutes">0</span>
+                    <span class="countdown-label">minutos</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="countdown-seconds">0</span>
+                    <span class="countdown-label">segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: Cuándo y Dónde -->
+        <div class="card reveal">
+            <h2>Datos del Circuito</h2>
+            
+            <div style="font-size: 1.1em; margin: 25px 0;">
+                <p><span style="font-size: 1.3em; margin-right: 5px;">📅</span> <strong>Sábado, 7 de Noviembre</strong></p>
+                <p><span style="font-size: 1.3em; margin-right: 5px;">⏰</span> <strong>3:00pm</strong></p>
+            </div>
+            
+            <div class="info-box">
+                <p style="color: #ff8b8b; font-weight: 600; margin-bottom: 5px;">📍 Pista de Carreras</p>
+                <p style="font-size: 0.95em; margin: 0;">Salón Castillito</p>
+            </div>
+
+            <iframe
+                class="map-embed"
+                src="https://www.google.com/maps?q=El+Castillito&ll=20.5821759,-100.4924181&z=15&output=embed"
+                title="Mapa de Salón Castillito"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+            </iframe>
+            <a class="map-link" href="https://maps.app.goo.gl/Zj6wn38neeDfgyoCA" target="_blank" rel="noopener noreferrer">
+                Abrir la invitación en Google Maps
+            </a>
+        </div>
+
+        <!-- MESA DE REGALOS -->
+        <div class="card reveal">
+            <h2>🎁 Mesa de Regalos</h2>
+            <p>Tu presencia es el mejor regalo para Enrique.</p>
+            <p style="margin-top: 15px; font-weight: 500; color: #ffb142;">Si deseas obsequiarle algo, puedes traerlo el día de la celebración.</p>
+        </div>
+
+        <!-- SECCIÓN 3: Itinerario -->
+        <div class="card reveal">
+            <h2>Parada en Pits</h2>
+            <p>Un día lleno de diversión y mucha gasolina.</p>
+            
+            <div class="itinerary">
+                <div class="itinerary-item">
+                    <strong>3:00pm</strong> - Llegada a la pista
+                </div>
+                <div class="itinerary-item">
+                    <strong>5:00 PM</strong> - Recarga en los pits
+                </div>
+                <div class="itinerary-item">
+                    <strong>6:00 PM</strong> - Juegos y diversión
+                </div>
+                <div class="itinerary-item">
+                    <strong>7:00 PM</strong> - Pastel del ganador
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: RSVP (Confirmación) -->
+        <div class="card reveal">
+            <h2>Pase VIP</h2>
+            <p>No olvides traer tus mejores llantas y muchísima energía.</p>
+            <p style="margin-top: 15px; font-size: 0.95em;">Por favor, confirma tu asistencia para preparar tu lugar especial en la zona de pits.</p>
+            
+            <a href="https://wa.me/525551234567?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20fiesta%20de%20Enrique%20🚗💨" class="btn-rsvp" target="_blank">
+                Confirmar asistencia
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Script para el efecto Scroll Reveal -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 80; 
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        reveal(); // Ejecutar al cargar la página
+
+        var eventDate = new Date("2026-11-07T15:00:00").getTime();
+        var countdownTimer = setInterval(function () {
+            var remaining = eventDate - new Date().getTime();
+
+            if (remaining <= 0) {
+                clearInterval(countdownTimer);
+                remaining = 0;
+            }
+
+            document.getElementById("countdown-days").textContent = Math.floor(remaining / (1000 * 60 * 60 * 24));
+            document.getElementById("countdown-hours").textContent = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+            document.getElementById("countdown-minutes").textContent = Math.floor((remaining / (1000 * 60)) % 60);
+            document.getElementById("countdown-seconds").textContent = Math.floor((remaining / 1000) % 60);
+        }, 1000);
+    </script>
+</body>
+</html>
