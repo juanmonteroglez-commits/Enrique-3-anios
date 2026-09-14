@@ -82,6 +82,16 @@
             z-index: 2;
         }
 
+        .hero-logo {
+            display: block;
+            width: min(70vw, 360px);
+            height: auto;
+            max-height: 120px;
+            object-fit: contain;
+            z-index: 2;
+            filter: drop-shadow(3px 3px 0 #8f0007);
+        }
+
         .hero .subtitle {
             font-size: 1.4em;
             font-weight: 500;
@@ -247,6 +257,100 @@
             flex-direction: column;
             justify-content: center;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .section-edge {
+            position: absolute;
+            z-index: 3;
+            width: 58px;
+            height: auto;
+            pointer-events: none;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 5px rgba(31, 45, 61, 0.16));
+        }
+
+        .section-edge.top-left {
+            top: -30px;
+            left: -28px;
+            transform: rotate(-12deg);
+        }
+
+        .section-edge.top-right {
+            top: -26px;
+            right: -28px;
+            transform: rotate(10deg);
+        }
+
+        .section-edge.bottom-left {
+            bottom: -30px;
+            left: -24px;
+            transform: rotate(8deg);
+        }
+
+        .section-edge.wide {
+            width: 82px;
+        }
+
+        .section-edge.large {
+            width: 94px;
+        }
+
+        .section-edge.car {
+            width: 108px;
+        }
+
+        @media (max-width: 520px) {
+            .section-edge {
+                width: 48px;
+            }
+
+            .section-edge.wide {
+                width: 68px;
+            }
+
+            .section-edge.large {
+                width: 78px;
+            }
+
+            .section-edge.car {
+                width: 90px;
+            }
+        }
+
+        .card:nth-of-type(n + 2) .section-edge {
+            width: 72.5px;
+        }
+
+        .card:nth-of-type(n + 2) .section-edge.wide {
+            width: 102.5px;
+        }
+
+        .card:nth-of-type(n + 2) .section-edge.large {
+            width: 117.5px;
+        }
+
+        .card:nth-of-type(n + 2) .section-edge.car {
+            width: 135px;
+        }
+
+        @media (max-width: 520px) {
+            .card:nth-of-type(n + 2) .section-edge {
+                width: 60px;
+            }
+
+            .card:nth-of-type(n + 2) .section-edge.wide {
+                width: 85px;
+            }
+
+            .card:nth-of-type(n + 2) .section-edge.large {
+                width: 97.5px;
+            }
+
+            .card:nth-of-type(n + 2) .section-edge.car {
+                width: 112.5px;
+            }
         }
 
         .card:hover {
@@ -609,7 +713,7 @@
     <!-- === HERO SECTION === -->
     <header class="hero">
         <div class="badge-3">3</div>
-        <h1>¡Enrique!</h1>
+        <img src="logo.png" alt="Enrique" class="hero-logo">
         <p class="subtitle">¡Arranquen sus motores!</p>
         
         <img src="https://www.pngmart.com/files/4/Lightning-McQueen-PNG-Transparent-Image.png" alt="Rayo McQueen" class="hero-car">
@@ -630,6 +734,9 @@
         
         <!-- SECCIÓN 1: Mensaje -->
         <div class="card reveal">
+            <img src="1.png" alt="Señal de carretera decorativa" class="section-edge top-left large">
+            <img src="2.png" alt="Rayo decorativo" class="section-edge top-right wide">
+            <img src="3.png" alt="Emblema de carrera decorativo" class="section-edge bottom-left wide">
             <h2>Nuestra Gran Carrera</h2>
             <p>Nuestro pequeño campeón está por dar su tercera vuelta al sol y queremos celebrarlo contigo.</p>
             <p style="margin-top: 15px; font-weight: 500; color: #ffb142;">¡Te esperamos en la línea de meta!</p>
@@ -637,6 +744,9 @@
 
         <!-- CUENTA REGRESIVA -->
         <div class="card reveal">
+            <img src="4.png" alt="Banderas de carrera decorativas" class="section-edge top-left wide">
+            <img src="5.png" alt="Auto de carrera decorativo" class="section-edge top-right car">
+            <img src="6.png" alt="Estrella roja decorativa" class="section-edge bottom-left">
             <h2>Cuenta Regresiva</h2>
             <p>¡Cada vez falta menos para celebrar a Enrique!</p>
             <div class="countdown" aria-label="Cuenta regresiva para la fiesta">
@@ -661,6 +771,9 @@
 
         <!-- SECCIÓN 2: Cuándo y Dónde -->
         <div class="card reveal">
+            <img src="7.png" alt="Decoración de carrera" class="section-edge top-left">
+            <img src="8.png" alt="Decoración de carrera" class="section-edge top-right">
+            <img src="9.png" alt="Decoración de carrera" class="section-edge bottom-left">
             <h2>Datos del Circuito</h2>
             
             <div style="font-size: 1.1em; margin: 25px 0;">
@@ -688,6 +801,8 @@
 
         <!-- MESA DE REGALOS -->
         <div class="card reveal">
+            <img src="10.png" alt="Decoración de carrera" class="section-edge top-left">
+            <img src="11.png" alt="Decoración de carrera" class="section-edge top-right">
             <h2>🎁 Mesa de Regalos</h2>
             <p>Tu presencia es el mejor regalo para Enrique.</p>
             <p style="margin-top: 15px; font-weight: 500; color: #ffb142;">Si deseas obsequiarle algo, puedes traerlo el día de la celebración.</p>
