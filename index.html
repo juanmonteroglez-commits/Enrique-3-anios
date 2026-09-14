@@ -14,8 +14,8 @@
     <meta name="twitter:title" content="Invitación de Enrique">
     <meta name="twitter:description" content="¡Te esperamos para celebrar el tercer cumpleaños de Enrique!">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=80">
-    <!-- Fuentes: Fredoka (tierna) y Racing Sans One (títulos) -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <!-- Fuentes: Fredoka (tierna), Racing Sans One (títulos), Cormorant Garamond (elegante) y Cinzel (sello refinado) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Racing+Sans+One&display=swap&family=Cormorant+Garamond:wght@500;600;700&display=swap&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -400,9 +400,209 @@
                 transition-delay: 0s;
             }
         }
+
+        body.sobre-visible {
+            overflow: hidden;
+        }
+
+        .portada-sobre {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            display: grid;
+            place-items: center;
+            background: rgba(232, 244, 242, 0.96);
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+
+        .portada-sobre.oculta {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .sobre-boton {
+            position: relative;
+            width: min(82vw, 360px);
+            aspect-ratio: 1.55;
+            margin-bottom: 70px;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+            perspective: 900px;
+        }
+
+        .sobre-boton:focus-visible {
+            outline: 2px solid #2f5d63;
+            outline-offset: 8px;
+        }
+
+        .sobre-cuerpo {
+            position: absolute;
+            inset: 18% 0 0;
+            overflow: hidden;
+            border-radius: 4px;
+            background: linear-gradient(145deg, #f7e5d5, #e9b9a8);
+            box-shadow: 0 20px 42px rgba(116, 48, 36, 0.18);
+        }
+
+        .sobre-cuerpo::before,
+        .sobre-cuerpo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .sobre-cuerpo::before {
+            background:
+                linear-gradient(32deg, transparent 49%, rgba(127, 184, 173, 0.48) 50%, transparent 51%),
+                linear-gradient(-32deg, transparent 49%, rgba(127, 184, 173, 0.48) 50%, transparent 51%);
+        }
+
+        .sobre-cuerpo::after {
+            background: linear-gradient(145deg, transparent 49%, rgba(201, 162, 75, 0.5) 50%, transparent 51%);
+            opacity: 0.45;
+        }
+
+        .sobre-solapa {
+            position: absolute;
+            z-index: 3;
+            top: 18%;
+            left: 0;
+            width: 100%;
+            height: 52%;
+            transform-origin: top center;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            background: linear-gradient(145deg, #d5533c, #b42d24);
+            backface-visibility: hidden;
+            transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.25, 1);
+        }
+
+        .sobre-solapa::before {
+            content: "";
+            position: absolute;
+            inset: 18% 25% 10% 25%;
+            background: url('sello.png') center/contain no-repeat;
+            opacity: 0.9;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
+        }
+
+        .sobre-tarjeta {
+            position: absolute;
+            z-index: 1;
+            left: 12%;
+            right: 12%;
+            bottom: 9%;
+            height: 70%;
+            display: grid;
+            place-items: center;
+            padding: 12px;
+            color: var(--azul-profundo);
+            background: #f7edde;
+            border: 1px solid rgba(201, 162, 75, 0.5);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.25rem, 6vw, 1.8rem);
+            line-height: 1.05;
+            letter-spacing: 0.04em;
+            transform: translateY(45%);
+            transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.25, 1) 0.2s;
+        }
+
+        .sobre-sello {
+            position: absolute;
+            z-index: 4;
+            top: 43%;
+            left: 50%;
+            width: 38px;
+            height: 38px;
+            display: none;
+            place-items: center;
+            border: 2px solid rgba(255, 244, 220, 0.9);
+            border-radius: 50%;
+            background: #f7e9c8;
+            color: #9e2a22;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            line-height: 1;
+            letter-spacing: 0.04em;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .sobre-instruccion {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -82px;
+            color: var(--azul-profundo);
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .sobre-boton.abierto .sobre-solapa {
+            transform: rotateX(180deg);
+        }
+
+        .sobre-boton.abierto .sobre-tarjeta {
+            transform: translateY(-28%);
+        }
+
+        .sobre-boton.abierto .sobre-sello {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.7);
+        }
+
+        .texto {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--azul-profundo);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 5vw, 2.6rem);
+            line-height: 0.88;
+            letter-spacing: 0.05em;
+            gap: 0;
+        }
+
+        .texto span {
+            display: block;
+            margin: 0;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .texto span:last-child {
+            transform: translateY(10px);
+        }
+
     </style>
 </head>
-<body>
+<body class="sobre-visible">
+
+    <div class="portada-sobre" id="portadaSobre" aria-live="polite">
+        <button class="sobre-boton" id="abrirSobre" type="button" aria-label="Abrir invitación">
+            <div class="sobre-solapa"></div>
+            <div class="sobre-cuerpo"></div>
+            <div class="sobre-sello" aria-label="Sello">E</div>
+            <div class="sobre-tarjeta">
+                <div class="texto">
+                    <span>3 años</span>
+                    <span>Enrique</span>
+                </div>
+            </div>
+            <div class="sobre-instruccion">Toca para abrir</div>
+        </button>
+    </div>
 
     <div class="clouds"></div>
 
@@ -561,5 +761,28 @@
             document.getElementById("countdown-seconds").textContent = Math.floor((remaining / 1000) % 60);
         }, 1000);
     </script>
+
+    <script>
+        const body = document.body;
+        const overlay = document.getElementById('portadaSobre');
+        const btn = document.getElementById('abrirSobre');
+
+        function abrirSobre() {
+            btn.classList.add('abierto');
+            setTimeout(function () {
+                overlay.classList.add('oculta');
+                body.classList.remove('sobre-visible');
+            }, 700);
+        }
+
+        btn.addEventListener('click', abrirSobre);
+        btn.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                abrirSobre();
+            }
+        });
+    </script>
+
 </body>
 </html>
