@@ -594,93 +594,6 @@
             font-weight: 600;
         }
 
-        .btn-rsvp {
-            display: inline-block;
-            background-color: #ff9b9b;
-            color: white;
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 30px;
-            font-size: 1.15em;
-            font-weight: 500;
-            margin-top: 20px;
-            box-shadow: 0 6px 15px rgba(255, 155, 155, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn-rsvp:hover {
-            background-color: #ff8b8b;
-            transform: translateY(-2px);
-        }
-
-        .btn-rsvp:active {
-            transform: translateY(1px);
-        }
-
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-            margin-top: 12px;
-        }
-
-        .rsvp-form input,
-        .rsvp-form select {
-            width: 100%;
-            min-height: 50px;
-            padding: 0 18px;
-            border: 1px solid #e5ddd3;
-            border-radius: 0;
-            background: #ffffff;
-            color: #222222;
-            font: inherit;
-            font-size: 0.95em;
-            text-align: center;
-            outline: none;
-        }
-
-        .rsvp-form input:focus,
-        .rsvp-form select:focus {
-            border-color: #075844;
-            box-shadow: 0 0 0 2px rgba(7, 88, 68, 0.12);
-        }
-
-        .rsvp-form select {
-            appearance: auto;
-        }
-
-        .rsvp-submit {
-            min-height: 47px;
-            margin-top: 18px;
-            border: 0;
-            border-radius: 2px;
-            background: #d70a13;
-            color: #ffffff;
-            font: inherit;
-            font-size: 0.8em;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-
-        .rsvp-submit:hover {
-            background: #a8070d;
-            transform: translateY(-1px);
-        }
-
-        .rsvp-submit:active {
-            transform: translateY(1px);
-        }
-
-        .rsvp-status {
-            min-height: 1.5em;
-            margin: 14px 0 0;
-            color: #075844;
-            font-size: 0.85em;
-        }
-
         /* === CLASES PARA EL SCROLL REVEAL === */
         .reveal {
             opacity: 0;
@@ -1085,23 +998,6 @@
             </div>
         </div>
 
-        <!-- SECCIÓN 4: RSVP (Confirmación) -->
-        <div class="card reveal">
-            <h2>Confirmación</h2>
-            <p>No olvides traer tus mejores llantas y muchísima energía.</p>
-            <form class="rsvp-form" id="rsvpForm">
-                <input id="rsvpName" name="name" type="text" placeholder="Nombre completo" autocomplete="name" required>
-                <input id="rsvpGuests" name="guests" type="number" min="0" max="20" placeholder="Número de acompañantes" required>
-                <select id="rsvpAttendance" name="attendance" required>
-                    <option value="" selected disabled>¿Asistirás?</option>
-                    <option value="Sí, asistiré">Sí, asistiré</option>
-                    <option value="No podré asistir">No podré asistir</option>
-                </select>
-                <button class="rsvp-submit" type="submit">CONFIRMAR ASISTENCIA</button>
-            </form>
-            <p class="rsvp-status" id="rsvpStatus" aria-live="polite"></p>
-        </div>
-
     </main>
 
     <!-- Script para el efecto Scroll Reveal -->
@@ -1198,20 +1094,6 @@
             document.getElementById("countdown-seconds").textContent = Math.floor((remaining / 1000) % 60);
         }, 1000);
 
-        var rsvpForm = document.getElementById("rsvpForm");
-        var rsvpStatus = document.getElementById("rsvpStatus");
-
-        rsvpForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            var name = document.getElementById("rsvpName").value.trim();
-            var guests = document.getElementById("rsvpGuests").value;
-            var attendance = document.getElementById("rsvpAttendance").value;
-            var message = "¡Hola! Soy " + name + ". " + attendance + " a la fiesta de Enrique. Acompañantes: " + guests + ".";
-
-            rsvpStatus.textContent = "Abriendo WhatsApp...";
-            window.open("https://wa.me/5214428631544?text=" + encodeURIComponent(message), "_blank");
-        });
     </script>
 
     <script>
