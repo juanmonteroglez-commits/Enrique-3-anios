@@ -505,6 +505,28 @@
             margin-top: 6px;
         }
 
+        .calendar-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 22px;
+            background-color: #d70a13;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(215, 10, 19, 0.25);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .calendar-button:hover {
+            background-color: #a8070d;
+            transform: translateY(-2px);
+        }
+
+        .calendar-button:active {
+            transform: translateY(1px);
+        }
+
         .itinerary {
             text-align: left;
             margin-top: 20px;
@@ -912,6 +934,13 @@
                     <span class="countdown-label">segundos</span>
                 </div>
             </div>
+            <a
+                class="calendar-button"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Cumplea%C3%B1os%20de%20Enrique&amp;dates=20261107T150000/20261107T170000&amp;details=Celebraci%C3%B3n%20de%20los%203%20a%C3%B1os%20de%20Enrique&amp;location=Sal%C3%B3n%20Castillito"
+                target="_blank"
+                rel="noopener noreferrer">
+                Agregar al calendario
+            </a>
         </div>
 
         <!-- SECCIÓN 2: Cuándo y Dónde -->
