@@ -470,6 +470,12 @@
             border: 3px solid #ffe885;
             background: #fffaf0;
             box-shadow: 0 8px 18px rgba(106, 124, 146, 0.12);
+            cursor: grab;
+            touch-action: pan-y;
+        }
+
+        .gallery-shell:active {
+            cursor: grabbing;
         }
 
         .gallery-track {
@@ -1118,14 +1124,19 @@
         reveal(); // Ejecutar al cargar la página
 
         var galleryTrack = document.getElementById("galleryTrack");
+        var galleryShell = document.querySelector(".gallery-shell");
         var gallerySlides = Array.from(document.querySelectorAll(".gallery-slide"));
         var galleryDots = Array.from(document.querySelectorAll(".carousel-dot"));
         var galleryIndex = 0;
+        var galleryPointerStartX = 0;
+        var galleryPointerDeltaX = 0;
+        var galleryPointerActive = false;
 
         function showSlide(index) {
             if (!galleryTrack || gallerySlides.length === 0) return;
 
             galleryIndex = (index + gallerySlides.length) % gallerySlides.length;
+            galleryTrack.style.transition = "transform 0.5s ease";
             galleryTrack.style.transform = "translateX(-" + (galleryIndex * 100) + "% )";
 
             galleryDots.forEach(function (dot, dotIndex) {
@@ -1133,7 +1144,42 @@
             });
         }
 
+        function finishGalleryDrag() {
+            if (!galleryPointerActive) return;
+
+            galleryPointerActive = false;
+            if (Math.abs(galleryPointerDeltaX) > 50) {
+                showSlide(galleryIndex + (galleryPointerDeltaX < 0 ? 1 : -1));
+            } else {
+                showSlide(galleryIndex);
+            }
+            galleryPointerDeltaX = 0;
+        }
+
+        if (galleryShell && galleryTrack) {
+            galleryShell.addEventListener("pointerdown", function (event) {
+                if (event.pointerType === "mouse" && event.button !== 0) return;
+
+                galleryPointerActive = true;
+                galleryPointerStartX = event.clientX;
+                galleryPointerDeltaX = 0;
+                galleryTrack.style.transition = "none";
+                galleryShell.setPointerCapture(event.pointerId);
+            });
+
+            galleryShell.addEventListener("pointermove", function (event) {
+                if (!galleryPointerActive) return;
+
+                galleryPointerDeltaX = event.clientX - galleryPointerStartX;
+                galleryTrack.style.transform = "translateX(calc(-" + (galleryIndex * 100) + "% + " + galleryPointerDeltaX + "px))";
+            });
+
+            galleryShell.addEventListener("pointerup", finishGalleryDrag);
+            galleryShell.addEventListener("pointercancel", finishGalleryDrag);
+        }
+
         setInterval(function () {
+            if (galleryPointerActive) return;
             showSlide(galleryIndex + 1);
         }, 4000);
 
